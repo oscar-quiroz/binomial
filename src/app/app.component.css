@@ -1,0 +1,98 @@
+.inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.flex {
+    display: flex;
+    gap: 30px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
+}
+
+.grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 5px;
+    font-size: 30px;
+}
+
+.number {
+    display: flex;
+    gap: 5px;
+}
+
+input {
+    border: none;
+    padding: 4px;
+    border-bottom: 1px solid rgba(201, 201, 201, 0.199);
+    transition: all 0.5s;
+}
+
+input:focus {
+    outline: none;
+    cursor: pointer;
+    border-bottom: 3px solid #0da1b4;
+}
+
+.gen {
+    border: none;
+    padding: 5px;
+    color: white;
+    background-color: #0e89d1;
+}
+
+.gen:hover {
+    cursor: pointer;
+}
+
+.green {
+    background-color: rgb(64, 197, 120);
+}
+
+.lds-ring {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border: 8px solid #0e89d1;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #0e89d1 transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
