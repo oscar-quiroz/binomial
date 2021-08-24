@@ -1,44 +1,71 @@
-<h1> Distribucion Binomial</h1>
+<h1>Distribucion Binomial</h1>
 <div class="flex">
     <div class="inputs">
-
         <div class="number">
-            <input class="item uno" type="number" [(ngModel)]="nVariables">
+            <input class="item uno" type="number" [(ngModel)]="nVariables" />
             <label> Número de variables</label>
         </div>
 
         <div class="number">
-            <input type="number" [(ngModel)]="cantidad">
-            <label> Cantidad de números pseudo aleatorios</label>
+            <input type="number" [(ngModel)]="cantidad" />
+            <label> Cantidad de números</label>
         </div>
 
         <div class="number">
-            <input type="number" [(ngModel)]="n">
-            <label> Núumero de muestras</label>
+            <input type="number" [(ngModel)]="n" />
+            <label> Número de muestras</label>
         </div>
 
         <div class="number">
-            <input type="number" [(ngModel)]="p">
+            <input type="number" [(ngModel)]="p" />
             <label> Probabilidad de exito</label>
         </div>
 
         <div class="number">
             <button class="gen" (click)="generar()">Generar</button>
         </div>
-
     </div>
 
     <div>
-
         <div class="lds-ring" *ngIf="isLoad">
             <div></div>
             <div></div>
             <div></div>
             <div></div>
         </div>
-        <div class="grid " *ngIf="!isLoad">
-            <p class="grid-item " *ngFor="let item of lista "> {{item}}
-            </p>
+        <div class="grid" *ngIf="!isLoad">
+            <p class="grid-item" *ngFor="let item of lista">{{ item }}</p>
         </div>
+    </div>
+</div>
+
+
+<div class="cont">
+    <div class="grafico">
+        <div class="col">
+            <div style="display: block">
+                <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType">
+          </canvas>
+            </div>
+            <button (click)="randomize()">Update</button>
+        </div>
+    </div>
+
+    <div class="grafico">
+        <table class="default">
+            <tr>
+                <td>Número</td>
+
+                <td>Frecuencia</td>
+            </tr>
+
+            <tr>
+                <td>Celda 4</td>
+
+                <td>Celda 5</td>
+
+
+            </tr>
+        </table>
     </div>
 </div>

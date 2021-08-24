@@ -70,7 +70,7 @@ input:focus {
     width: 64px;
     height: 64px;
     margin: 8px;
-    border: 8px solid #0e89d1;
+    border: 8px solid #0e8ad1;
     border-radius: 50%;
     animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
     border-color: #0e89d1 transparent transparent transparent;
@@ -95,4 +95,14 @@ input:focus {
     100% {
         transform: rotate(360deg);
     }
+}
+
+.grafico {
+    width: 50%;
+}
+
+.cont {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
