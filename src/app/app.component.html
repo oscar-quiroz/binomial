@@ -2,7 +2,7 @@
 <div class="flex">
     <div class="inputs">
         <div class="number">
-            <input class="item uno" type="number" [(ngModel)]="nVariables" />
+            <input type="number" [(ngModel)]="nVariables" />
             <label> Número de variables</label>
         </div>
 
@@ -33,8 +33,8 @@
             <div></div>
             <div></div>
         </div>
-        <div class="grid" *ngIf="!isLoad">
-            <p class="grid-item" *ngFor="let item of lista">{{ item }}</p>
+        <div class="generados" *ngIf="!isLoad">
+            <p class="item" *ngFor="let item of lista">{{ item }}</p>
         </div>
     </div>
 </div>
@@ -44,28 +44,9 @@
     <div class="grafico">
         <div class="col">
             <div style="display: block">
-                <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType">
-          </canvas>
+                <app-bar-graphics *ngIf="!isVoid" [labels]="labels" [data]="data"></app-bar-graphics>
             </div>
-            <button (click)="randomize()">Update</button>
         </div>
+
+
     </div>
-
-    <div class="grafico">
-        <table class="default">
-            <tr>
-                <td>Número</td>
-
-                <td>Frecuencia</td>
-            </tr>
-
-            <tr>
-                <td>Celda 4</td>
-
-                <td>Celda 5</td>
-
-
-            </tr>
-        </table>
-    </div>
-</div>

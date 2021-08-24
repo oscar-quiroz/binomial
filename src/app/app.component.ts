@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
-
 import { Label } from 'ng2-charts';
 
 @Component({
@@ -9,28 +7,11 @@ import { Label } from 'ng2-charts';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  public barChartOptions: ChartOptions = {
-    responsive: true,
-    scales: { xAxes: [{}], yAxes: [{}] },
-    plugins: {
-      datalabels: {
-        anchor: 'end',
-        align: 'end',
-      },
-    },
-  };
-  public barChartLabels: Label[] = ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19'];
-  public barChartType: ChartType = 'bar';
-  public barChartLegend = true;
-  public barChartData: ChartDataSets[] = [
-    {
-      data: [
-        1, 17, 107, 476, 1431, 3763, 7416, 12092, 15803, 17471, 16059, 12072,
-        7534, 3673, 1504, 444, 115, 19, 2, 1,
-      ],
-      label: 'Series A', backgroundColor:'#0e8ad17c', hoverBackgroundColor: '#0e8ad1', 
-    },
-  ];
+  labels: Label[] = [];
+  data: number[];
+  isVoid: boolean = true;
+
+  constructor() {}
 
   title = 'binomial';
   nVariables: number = 2;
@@ -39,59 +20,69 @@ export class AppComponent {
   p: number = 0.5;
   random = Math.random();
   isLoad = false;
-
   lista: number[] = [];
 
   generar() {
+    this.lista = [];
+    this.labels = [];
+    this.isVoid = true;
     this.isLoad = true;
-
     setTimeout(() => {
       this.generarNumeros();
+      
+      this.llenarTabla();
     }, 400);
   }
 
   generarNumeros() {
-    this.lista = [];
+    
     let valor: number = 0;
-    let x = 0;
-    let random = 0;
-    for (var i = 1; i < 21; i++) {
+    let x:number = 0;
+    let random:number = 0;
+
+    for (var i = 0; i < this.cantidad * this.nVariables; i++) {
       if (i <= this.n) {
         random = Math.random();
         console.log(random);
-        if (random <= this.p) {
+        if (random >= this.p) {
           x = x + 1;
         }
       } else {
         valor = x;
       }
       this.lista.push(valor);
+      let indice = i ;
     }
+
     this.isLoad = false;
   }
 
-  // events
-  public chartClicked({
-    event,
-    active,
-  }: {
-    event: MouseEvent;
-    active: {}[];
-  }): void {
-    console.log(event, active);
+  calcularFrecuencias(lista) {
+    var x = lista;
+    var indices = new Array(this.labels.length); // colocar en vez de 8 el max del array "x"
+    indices.fill(0);
+    for (var i = 0; i < indices.length; i++) {
+      for (var j = 0; j < x.length; j++) {
+        if (i == x[j]) {
+          indices[i] = indices[i] + 1;
+        }
+      }
+    }
+    console.log(indices)
+  return indices;
+
+  
+}
+obtenerLabels(){
+  for (var i = 0; i <= this.n; i++) {
+    this.labels.push(i+"");
   }
 
-  public chartHovered({
-    event,
-    active,
-  }: {
-    event: MouseEvent;
-    active: {}[];
-  }): void {
-    console.log(event, active);
-  }
+}
+  llenarTabla() {
+this.obtenerLabels();
+    this.data = this.calcularFrecuencias(this.lista);
 
-  public randomize(): void {
-   
+    this.isVoid = false;
   }
 }
