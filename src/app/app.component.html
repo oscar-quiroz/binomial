@@ -39,14 +39,21 @@
     </div>
 </div>
 
-
 <div class="cont">
     <div class="grafico">
-        <div class="col">
-            <div style="display: block">
-                <app-bar-graphics *ngIf="!isVoid" [labels]="labels" [data]="data"></app-bar-graphics>
-            </div>
+        <div style="display: block">
+            <app-bar-graphics *ngIf="!isVoid" [labels]="labels" [data]="data"></app-bar-graphics>
         </div>
-
-
     </div>
+    <table *ngIf="!isVoid">
+        <tr>
+            <th>Número</th>
+            <th>Frecuencia</th>
+        </tr>
+        <tr *ngFor="let item of data; let i = index">
+            <td>{{ i }}</td>
+            <td>{{ item}}</td>
+        </tr>
+        <tr></tr>
+    </table>
+</div>

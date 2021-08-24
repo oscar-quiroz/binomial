@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import { Label } from 'ng2-charts';
 
+
+interface Dato{
+  label:Label;
+  numero:string;
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,7 +17,10 @@ export class AppComponent {
   data: number[];
   isVoid: boolean = true;
 
-  constructor() {}
+
+
+  constructor() {
+  }
 
   title = 'binomial';
   nVariables: number = 2;
@@ -44,19 +53,20 @@ export class AppComponent {
       if (i <= this.n) {
         random = Math.random();
         console.log(random);
-        if (random >= this.p) {
-          x = x + 1;
-        }
+        if (random < this.p) x = x + 1;
       } else {
         valor = x;
       }
       this.lista.push(valor);
-      let indice = i ;
     }
 
     this.isLoad = false;
   }
 
+
+
+
+  
   calcularFrecuencias(lista) {
     var x = lista;
     var indices = new Array(this.labels.length); // colocar en vez de 8 el max del array "x"
@@ -80,9 +90,10 @@ obtenerLabels(){
 
 }
   llenarTabla() {
-this.obtenerLabels();
+    this.obtenerLabels();
     this.data = this.calcularFrecuencias(this.lista);
-
+   
+  
     this.isVoid = false;
   }
 }
