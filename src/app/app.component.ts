@@ -20,8 +20,8 @@ export class AppComponent {
 
   title = 'binomial';
   nVariables: number = 2;
-  cantidad: number = 10;
-  n: number = 1;
+  cantidad: number = 100;
+  n: number = 19;
   p: number = 0.5;
   random = Math.random();
   isLoad = false;

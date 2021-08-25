@@ -96,13 +96,17 @@ input:focus {
 }
 
 .generados {
-    width: 220px;
+    width: 100%;
+    max-height: 210px;
+    overflow-y: auto;
     display: flex;
     flex-wrap: wrap;
 }
 
 .item {
+    text-align: center;
     padding: 5px;
+    width: 20px;
     border: 1px solid black;
     margin: 0px;
 }
@@ -111,6 +115,7 @@ table {
     border-collapse: collapse;
     width: 200px;
     height: 100px;
+    padding-right: 250px;
 }
 
 th,
