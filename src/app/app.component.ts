@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { Label } from 'ng2-charts';
 
-
-interface Dato{
-  label:Label;
-  numero:string;
+interface Dato {
+  label: Label;
+  numero: string;
 }
 
 @Component({
@@ -17,10 +16,7 @@ export class AppComponent {
   data: number[];
   isVoid: boolean = true;
 
-
-
-  constructor() {
-  }
+  constructor() {}
 
   title = 'binomial';
   nVariables: number = 2;
@@ -38,37 +34,35 @@ export class AppComponent {
     this.isLoad = true;
     setTimeout(() => {
       this.generarNumeros();
-      
       this.llenarTabla();
     }, 400);
   }
 
   generarNumeros() {
-    
-    let valor: number = 0;
-    let x:number = 0;
-    let random:number = 0;
-
-    for (var i = 0; i < this.cantidad * this.nVariables; i++) {
-      if (i <= this.n) {
-        random = Math.random();
-        console.log(random);
-        if (random < this.p) x = x + 1;
-      } else {
-        valor = x;
+    let x: number = 0;
+    for (var j = 0; j < this.cantidad * this.nVariables; j++) {
+      x = 0;
+      for (var i = 1; i <= this.n; i++) {
+        if (i <= this.n) {
+          x += this.bernoulli();
+        }
       }
-      this.lista.push(valor);
+      this.lista.push(x);
     }
-
     this.isLoad = false;
   }
 
+  bernoulli() {
+    let random = 0;
+    let x = 0;
+    random = Math.random();
+    x = random <= this.p ? x + 1 : x;
+    return x;
+  }
 
-
-
-  
   calcularFrecuencias(lista) {
     var x = lista;
+    console.log('frecuencias', x);
     var indices = new Array(this.labels.length); // colocar en vez de 8 el max del array "x"
     indices.fill(0);
     for (var i = 0; i < indices.length; i++) {
@@ -78,22 +72,21 @@ export class AppComponent {
         }
       }
     }
-    console.log(indices)
-  return indices;
-
-  
-}
-obtenerLabels(){
-  for (var i = 0; i <= this.n; i++) {
-    this.labels.push(i+"");
+    console.log(indices);
+    return indices;
   }
 
-}
+  obtenerLabels() {
+    for (var i = 0; i <= this.n; i++) {
+      this.labels.push(i + '');
+    }
+
+    console.log('labels ', this.labels);
+  }
+
   llenarTabla() {
     this.obtenerLabels();
     this.data = this.calcularFrecuencias(this.lista);
-   
-  
     this.isVoid = false;
   }
 }
