@@ -65,6 +65,4 @@ export class BarGraphicsComponent implements OnInit {
   }): void {
     console.log(event, active);
   }
-
-  public randomize(): void {}
 }
